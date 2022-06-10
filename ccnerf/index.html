@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+      CCNeRF
+    </title>
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <style>
+      body {
+        background: rgb(255, 255, 255) no-repeat fixed top left;
+        font-family:'Open Sans', sans-serif;
+      }
+    </style>
+
+    <!-- chart.js -->
+    <script src="js/chart.min.js"></script>
+
+  </head>
+
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <h2 style="font-size:30px;">
+              Compressible-composable NeRF via Rank-residual Decomposition
+            </h2>
+            <!-- <h4 style="color:#6e6e6e;">  (Conference Proceedings) </h4> -->
+            <hr>
+            <h6> <a href="https://github.com/ashawkey" target="_blank">Jiaxiang Tang</a><sup>1</sup>, 
+                 <a href="https://charlescxk.github.io/" target="_blank">Xiaokang Chen</a><sup>1</sup>, 
+                 <a href="http://wangjingbo.top/" target="_blank">Jingbo Wang</a><sup>2</sup>, 
+                 <a href="http://www.cis.pku.edu.cn/info/1177/1378.htm" target="_blank">Gang Zeng</a><sup>1</sup>
+                 <br>
+                 <br>
+            <p> <sup>1</sup> Peking University &nbsp;
+                <sup>2</sup> Chinese University of Hong Kong &nbsp;
+                <br>
+            </p>
+            
+            <div class="row justify-content-center">
+              <!-- link to paper -->
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://arxiv.org/abs/2205.14870" role="button" target="_blank">
+                    <i class="fa fa-file"></i> Paper </a> </p>
+              </div>
+              <!-- link to code -->
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" id="code_soon" href="https://github.com/ashawkey/CCNeRF" role="button" target="_blank">
+                <i class="fa fa-github-alt"></i> Code </a> </p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+            <hr style="margin-top:0px">
+            <div class="row justify-content-center" style="align-items:center; display:flex;">
+              <div> 
+                <img src="images/teaser.jpg" alt="teaser" class="img-responsive" width="100%"/>
+              </div>
+            </div>
+            <br>
+        </div>
+          <p class="text-justify">
+            Neural Radiance Field (NeRF) has emerged as a compelling method to represent 3D objects and scenes for photo-realistic rendering. 
+            However, its implicit representation causes difficulty in manipulating the models like the explicit mesh representation.
+            Several recent advances in NeRF manipulation are usually restricted by a shared renderer network, or suffer from large model size. 
+            To circumvent the hurdle, in this paper, we present an explicit neural field representation that enables efficient and convenient manipulation of models.
+            To achieve this goal, we learn a hybrid tensor rank decomposition of the scene without neural networks. 
+            Motivated by the low-rank approximation property of the SVD algorithm, we propose a rank-residual learning strategy to encourage the preservation of primary information in lower ranks. 
+            The model size can then be dynamically adjusted by rank truncation to control the levels of detail, achieving near-optimal compression without extra optimization.
+            Furthermore, different models can be arbitrarily transformed and composed into one scene by concatenating along the rank dimension.
+            The growth of storage cost can also be mitigated by compressing the unimportant objects in the composed scene. 
+            We demonstrate that our method is able to achieve comparable rendering quality to state-of-the-art methods, while enabling extra capability of compression and composition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- compression results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Compression</h3>
+            <hr style="margin-top:0px">
+            <!-- text -->
+            </div>
+              <p class="text-justify">
+                Our model supports near-optimal low-rank approximation of neural fields <span class="font-weight-bold">without extra optimization</span>, 
+                similar to the SVD compression of images.
+              </p>
+              <ul>
+                <li> <span class="font-weight-bold">Optimal</span>: retrained at each different rank. </li>
+                <li> <span class="font-weight-bold">Baseline</span>: sort-and-truncated from the optimal model at full rank.</li>
+                <li> <span class="font-weight-bold">Proposed</span>: sort-and-truncated from our proposed model at full rank.</li>
+              </ul>
+            </div>
+            <!-- chart -->
+            <div>
+              <canvas id="chart_compression" height="100"></canvas>
+            </div>
+            <!-- images -->
+            <br/>
+            <div class="alert alert-secondary" role="alert">
+              Click at each data point to display the corresponding rendered images!
+            </div>
+            <div class="row justify-content-center" style="align-items:center; display:flex;">
+              <img id="img_optimal" style="border: 3px dashed #FF8888; margin:2px;" src="images/compression/optimal0.jpg" alt="optimal" class="img-responsive" width="30%"/>
+              <img id="img_baseline" style="border: 3px dashed #FFCF4F; margin:2px;" src="images/compression/baseline0.jpg" alt="baseline" class="img-responsive" width="30%"/>
+              <img id="img_proposed" style="border: 3px dashed #A0D6FF; margin:2px;" src="images/compression/proposed0.jpg" alt="proposed" class="img-responsive" width="30%"/>
+            </div>
+            <!-- script -->
+            <script type="text/javascript" src="js/compression.js"></script>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>  
+  
+  <!-- composition results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Composition</h3>
+          
+          <hr style="margin-top:0px">
+          <!-- text -->
+          </div>
+            <p class="text-justify">
+              Since our model describes each 3D scene with a set of rank components, composability can be naturally accomplished by concatenating along the rank dimension.
+            </p>
+          </div>
+
+          <!-- video -->
+          <div class="row justify-content-center" style="align-items:center; display:flex;">
+            <video width="50%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" controls>
+              <source src="videos/hotdog.mp4" type="video/mp4">
+            </video>
+            <video width="50%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" controls>
+              <source src="videos/drum.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <br/>
+
+          <div class="alert alert-secondary" role="alert">
+            For a scene composed of lots of different objects, we can compress the less important objects to achieve better efficiency and less storage with a little sacrifice of rendering quality.
+          </div>
+
+          <!-- image -->
+          <div class="row justify-content-center" style="align-items:center; display:flex;">
+            <div> 
+              <img src="images/lod.jpg" alt="LoD" class="img-responsive" width="100%"/>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <h3>Citation</h3>
+        <hr style="margin-top:0px">
+        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>@article{tang2022compressible,
+  title={Compressible-composable NeRF via Rank-residual Decomposition},
+  author={Tang, Jiaxiang and Chen, Xiaokang and Wang, Jingbo and Zeng, Gang},
+  journal={arXiv preprint arXiv:2205.14870},
+  year={2022}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ack -->
+  <!-- <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Acknowledgements</h3>
+          <hr style="margin-top:0px">
+          <p class="text-justify">
+            We would like to specially thank...
+          </p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- rec -->
+  <!-- <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Recommendations to other works from our group</h3>
+          <hr style="margin-top:0px">
+          <p class="text-justify">
+            Welcome to checkout ...
+          </p>
+      </div>
+    </div>
+  </div> -->
+
+
+  <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
+      <hr>
+      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
+  </footer>
+
+  <script>
+    MathJax = {
+      tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+</body>
+</html>
