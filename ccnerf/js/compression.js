@@ -109,6 +109,7 @@ const config = {
           var opt_file = 'images/compression/na.jpg';
         }
         
+        // update the images
         document.getElementById('img_optimal').src = opt_file;
         document.getElementById('img_baseline').src = `images/compression/baseline${index}.jpg`;
         document.getElementById('img_proposed').src = `images/compression/proposed${index}.jpg`;

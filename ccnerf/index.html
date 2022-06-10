@@ -11,8 +11,11 @@
 
     <link rel="icon" href="images/favicon.ico">
 
-    <!-- Bootstrap -->
+    <!-- bootstrap -->
     <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <style>
       body {
@@ -20,7 +23,6 @@
         font-family:'Open Sans', sans-serif;
       }
     </style>
-
     <!-- chart.js -->
     <script src="js/chart.min.js"></script>
 
@@ -32,11 +34,17 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
+            <!-- paper title -->
             <h2 style="font-size:30px;">
               Compressible-composable NeRF via Rank-residual Decomposition
             </h2>
+            
+            <!-- publication -->
             <!-- <h4 style="color:#6e6e6e;">  (Conference Proceedings) </h4> -->
+
             <hr>
+            
+            <!-- authors -->
             <h6> <a href="https://github.com/ashawkey" target="_blank">Jiaxiang Tang</a><sup>1</sup>, 
                  <a href="https://charlescxk.github.io/" target="_blank">Xiaokang Chen</a><sup>1</sup>, 
                  <a href="http://wangjingbo.top/" target="_blank">Jingbo Wang</a><sup>2</sup>, 
@@ -48,19 +56,24 @@
                 <br>
             </p>
             
+            <!-- links -->
             <div class="row justify-content-center">
               <!-- link to paper -->
               <div class="column">
-                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://arxiv.org/abs/2205.14870" role="button" target="_blank">
-                    <i class="fa fa-file"></i> Paper </a> </p>
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://arxiv.org/abs/2205.14870" role="button" target="_blank">
+                <i class="fa fa-file"></i> 
+                Paper 
+                </a> </p>
               </div>
               <!-- link to code -->
               <div class="column">
-                  <p class="mb-5"><a class="btn btn-large btn-light" id="code_soon" href="https://github.com/ashawkey/CCNeRF" role="button" target="_blank">
-                <i class="fa fa-github-alt"></i> Code </a> </p>
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://github.com/ashawkey/CCNeRF" role="button" target="_blank">
+                <i class="fa fa-github-alt"></i> 
+                Code 
+                </a> </p>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -157,12 +170,19 @@
 
           <!-- video -->
           <div class="row justify-content-center" style="align-items:center; display:flex;">
-            <video width="50%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" controls>
+            <video id="vid1" width="50%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" controls>
               <source src="videos/hotdog.mp4" type="video/mp4">
             </video>
-            <video width="50%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" controls>
+            <video id="vid2" width="50%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="" controls>
               <source src="videos/drum.mp4" type="video/mp4">
             </video>
+            <!-- set play back rate -->
+            <script>
+              var v1 = document.getElementById("vid1");
+              v1.playbackRate = 0.8;
+              var v2 = document.getElementById("vid2");
+              v2.playbackRate = 0.8;
+            </script>
           </div>
 
           <br/>
@@ -234,12 +254,12 @@
       Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
   </footer>
 
-  <script>
+  <!-- <script>
     MathJax = {
       tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
     };
   </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
 
 </body>
 </html>
