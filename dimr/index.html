@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+      DIMR
+    </title>
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <style>
+      body {
+        background: rgb(255, 255, 255) no-repeat fixed top left;
+        font-family:'Open Sans', sans-serif;
+      }
+    </style>
+
+    <!-- glob -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/glob@8.0.3/glob.min.js"></script>
+
+  </head>
+
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <!-- paper title -->
+            <h2 style="font-size:30px;">
+              Point Scene Understanding via Disentangled Instance Mesh Reconstruction
+            </h2>
+            
+            <!-- publication -->
+            <!-- <h4 style="color:#6e6e6e;">  (Conference Proceedings) </h4> -->
+
+            <hr>
+            
+            <!-- authors -->
+            <h6> <a href="https://github.com/ashawkey" target="_blank">Jiaxiang Tang</a><sup>1</sup>, 
+                 <a href="https://charlescxk.github.io/" target="_blank">Xiaokang Chen</a><sup>1</sup>, 
+                 <a href="http://wangjingbo.top/" target="_blank">Jingbo Wang</a><sup>2</sup>, 
+                 <a href="http://www.cis.pku.edu.cn/info/1177/1378.htm" target="_blank">Gang Zeng</a><sup>1</sup>
+                 <br>
+                 <br>
+            <p> <sup>1</sup> Peking University &nbsp;
+                <sup>2</sup> Chinese University of Hong Kong &nbsp;
+                <br>
+            </p>
+            
+            <!-- links -->
+            <div class="row justify-content-center">
+              <!-- link to paper -->
+              <div class="column">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://arxiv.org/abs/2203.16832" role="button" target="_blank">
+                <i class="fa fa-file"></i> 
+                Paper 
+                </a> </p>
+              </div>
+              <!-- link to code -->
+              <div class="column">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://github.com/ashawkey/dimr" role="button" target="_blank">
+                <i class="fa fa-github-alt"></i> 
+                Code 
+                </a> </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+            <hr style="margin-top:0px">
+            <div class="row justify-content-center" style="align-items:center; display:flex;">
+              <div> 
+                <img src="images/dimr.jpg" alt="dimr" class="img-responsive" width="100%"/>
+              </div>
+              <div> 
+                <img src="images/teaser.jpg" alt="teaser" class="img-responsive" width="100%"/>
+              </div>
+            </div>
+            <br>
+        </div>
+          <p class="text-justify">
+            Semantic scene reconstruction from point cloud is an essential and challenging task for 3D scene understanding. 
+            This task requires not only to recognize each instance in the scene, but also to recover their geometries based on the partial observed point cloud. 
+            Existing methods usually attempt to directly predict occupancy values of the complete object based on incomplete point cloud proposals from a detection-based backbone.
+            However, this framework always fails to reconstruct high fidelity mesh due to the obstruction of various detected false positive object proposals and the ambiguity of incomplete point observations for learning occupancy values of complete objects. 
+            To circumvent the hurdle, we propose a Disentangled Instance Mesh Reconstruction (DIMR) framework for effective point scene understanding.
+            A segmentation-based backbone is applied to reduce false positive object proposals, which further benefits our exploration on the relationship between recognition and reconstruction. 
+            Based on the accurate proposals, we leverage a mesh-aware latent code space to disentangle the processes of shape completion and mesh generation, relieving the ambiguity caused by the incomplete point observations. 
+            Furthermore, with access to the CAD model pool at test time, our model can also be used to improve the reconstruction quality by performing mesh retrieval without extra training.
+            We thoroughly evaluate the reconstructed mesh quality with multiple metrics, and demonstrate the superiority of our method on the challenging ScanNet dataset.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- 3D playground -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Instance Mesh Retrieval and Generation</h3>
+            <hr style="margin-top:0px">
+
+            <div class="row justify-content-center" style="align-items:center; display:flex;">
+              <div> 
+                <img src="images/mode.jpg" alt="mode" class="img-responsive" width="100%"/>
+              </div>
+            </div>
+
+            <br/>
+
+            <div class="alert alert-secondary" role="alert">
+              Our model supports both mesh retrieval and mesh generation in a unified framework. 
+              <br/>
+              Try with the interactive examples:
+            </div>
+            
+            
+            <!-- threejs hook -->
+            <div class="row justify-content-center" style="align-items:center; display:flex;"> 
+              <div class="flex-container" id="hook"> </div>
+            </div>
+
+            <!-- control -->
+            <div class="row justify-content-center" style="align-items:center; display:flex; margin:5px;">
+              
+              <b>Scene</b>: <select class="form-select" onchange="load_input()" id="scene_name" style="margin:10px;">
+                <option value="scene0011_01">scene0011_01</option>
+                <!-- <option value="scene0423_00">scene0423_00</option> -->
+                <option value="scene0030_02">scene0030_02</option>
+                <option value="scene0217_00">scene0217_00</option>
+                <!-- <option value="scene0690_00">scene0690_00</option> -->
+              </select>
+
+              <b>Mode</b>: <select class="form-select" onchange="change_k()" id="mode" style="margin:10px;">
+                <option value="sem">Semantic Segmentation</option>
+                <option value="inst">Instance Segmentation</option>
+                <option value="-1">Retrieval</option>
+                <option value="0">Generation</option>
+                <!-- <option value="1">Projection</option> -->
+              </select>
+            
+              <input type="button" id="run" onclick="run()" class="btn btn-outline-dark btn-sm" value="Run" style="margin:10px;" /> 
+
+            </div>
+
+            
+            <!-- script -->
+            <script type="module" src="js/rfs_renderer.js"> </script>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>  
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <h3>Citation</h3>
+        <hr style="margin-top:0px">
+        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>@article{tang2022point,
+  title={Point Scene Understanding via Disentangled Instance Mesh Reconstruction},
+  author={Tang, Jiaxiang and Chen, Xiaokang and Wang, Jingbo and Zeng, Gang},
+  journal={arXiv preprint arXiv:2203.16832},
+  year={2022}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ack -->
+  <!-- <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Acknowledgements</h3>
+          <hr style="margin-top:0px">
+          <p class="text-justify">
+            We would like to specially thank...
+          </p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- rec -->
+  <!-- <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Recommendations to other works from our group</h3>
+          <hr style="margin-top:0px">
+          <p class="text-justify">
+            Welcome to checkout ...
+          </p>
+      </div>
+    </div>
+  </div> -->
+
+
+  <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
+      <hr>
+      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
+  </footer>
+
+  <!-- <script>
+    MathJax = {
+      tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+</body>
+</html>
