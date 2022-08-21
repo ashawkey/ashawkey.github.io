@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'LXGWWenKai';
+  src: url('./fonts/LXGWWenKai-Regular.ttf') format('embedded-opentype'),  /* Internet Explorer */
+        url('./fonts/LXGWWenKai-Regular.ttf') format('woff2'),             /* Super Modern Browsers */
+        url('./fonts/LXGWWenKai-Regular.ttf') format('woff'),              /* Pretty Modern Browsers */
+        url('./fonts/LXGWWenKai-Regular.ttf') format('truetype'),          /* Safari, Android, iOS */
+        url('./fonts/LXGWWenKai-Regular.ttf') format('svg');               /* Legacy iOS */
+}
+
+body {
+  font-family: 'LXGWWenKai', Fallback, sans-serif;
+  font-size: 20px;
+}
+

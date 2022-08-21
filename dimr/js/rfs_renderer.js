@@ -339,14 +339,14 @@ function animate() {
 
 function load_input () {
     let scene_name = document.getElementById('scene_name').value;
-    console.log("[INFO] load input for ", scene_name);
+    // console.log("[INFO] load input for ", scene_name);
     clear_scene();
     plyloader.load(DATA[scene_name]['input'], post_load_ply("points_colored") );
 }
 
 function change_k () {
     let K = document.getElementById('mode').value;
-    console.log("[INFO] change mode ", K);
+    // console.log("[INFO] change mode ", K);
 }
 
 
