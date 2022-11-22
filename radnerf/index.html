@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    RAD-NeRF
+  </title>
+
+  <link rel="icon" href="../images/favicon.ico">
+
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- icon -->
+  <script src="https://kit.fontawesome.com/87dc3e863a.js" crossorigin="anonymous"></script>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background: rgb(255, 255, 255) no-repeat fixed top left;
+      font-family:'Open Sans', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0" style="padding-bottom: 0px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <!-- paper title -->
+            <h2 style="font-size:30px;">
+              Real-time Neural Radiance Talking Portrait Synthesis via Audio-spatial Decomposition
+            </h2>
+            
+            <!-- publication -->
+            <!-- <h4 style="color:#6e6e6e;"> ArXiv 2023 </h4> -->
+
+            <hr>
+            
+            <!-- authors -->
+            <h6> <a href="https://me.kiui.moe/" target="_blank">Jiaxiang Tang</a><sup>1</sup>, 
+                 Kaisiyuan Wang<sup>3</sup>, 
+                 <a href="https://hangz-nju-cuhk.github.io/" target="_blank">Hang Zhou</a><sup>2</sup>, 
+                 <a href="https://charlescxk.github.io/" target="_blank">Xiaokang Chen</a><sup>1</sup>, 
+                 Dongliang He, 
+                 Tianshu Hu<sup>2</sup>, 
+                 Jingtuo Liu<sup>2</sup>, 
+                 <a href="http://www.cis.pku.edu.cn/info/1177/1378.htm" target="_blank">Gang Zeng</a><sup>1</sup>,
+                 <a href="https://jingdongwang2017.github.io/" target="_blank">Jingdong Wang</a><sup>2</sup>
+                 <br>
+                 <br>
+            <p> <sup>1</sup> Peking University &nbsp;
+                <sup>2</sup> Baidu &nbsp;
+                <sup>3</sup> The University of Sydney &nbsp;
+                <br>
+            </p>
+            
+            <!-- links -->
+            <div class="row justify-content-center">
+              <!-- link to paper -->
+              <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="TODO" role="button" target="_blank">
+                <i class="fa fa-file"></i> 
+                Paper 
+                </a> </p>
+              </div>
+              <!-- link to video -->
+              <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark disabled" href="TODO" role="button" target="_blank">
+                <i class="fa-brands fa-youtube"></i> 
+                Video
+                </a> </p>
+              </div>
+              <!-- link to code -->
+              <!-- <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark disabled" href="https://github.com/ashawkey/RAD-NeRF" role="button" target="_blank">
+                <i class="fa fa-github-alt"></i> 
+                Code 
+                </a> </p>
+              </div> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- video carousel -->
+  <div> 
+    <div class="col-12 text-center">
+      <h3>Demonstration</h3>
+      <hr style="margin-top:0px">
+    </div>
+    <div class="row justify-content-center" style="align-items:center; display:flex; margin-bottom: 20px;">
+      <video width="18%" controls style="margin: 5px;"> <source src="videos/obama_intro.mp4" type="video/mp4"> </video>
+      <video width="18%" controls style="margin: 5px;"> <source src="videos/murphy_intro.mp4" type="video/mp4"> </video>
+      <video width="18%" controls style="margin: 5px;"> <source src="videos/engm_intro.mp4" type="video/mp4"> </video>
+      <video width="18%" controls style="margin: 5px;"> <source src="videos/marco_intro.mp4" type="video/mp4"> </video>
+      <video width="18%" controls style="margin: 5px;"> <source src="videos/chris_intro.mp4" type="video/mp4"> </video>
+    </div>
+    <div class="col-12 text-center">
+      (Videos synthesized by our method, and audio synthesized by <a href="https://speechify.com/text-to-speech-online/">Speechify</a> from text.)
+    </div>
+  </div>
+  <br>
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+          <hr style="margin-top:0px">
+        </div>
+          <p class="text-justify">
+While dynamic Neural Radiance Fields (NeRF) have shown success in high-fidelity 3D modeling of talking portraits, the slow training and inference speed severely obstruct their potential usage. 
+In this paper, we propose an efficient NeRF-based framework that enables real-time synthesizing of talking portraits and faster convergence by leveraging the recent success of grid-based NeRF.  
+Our key insight is to decompose the inherently high-dimensional talking portrait representation into three low-dimensional feature grids. 
+Specifically, a Decomposed Audio-spatial Encoding Module models the dynamic head with a 3D spatial grid and a 2D audio grid.
+The torso is handled with another 2D grid in a lightweight Pseudo-3D Deformable Module.
+Both modules focus on efficiency under the premise of good rendering quality.
+Extensive experiments demonstrate that our method can generate realistic and audio-lips synchronized talking portrait videos, while also being highly efficient compared to previous methods.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- method -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Method</h3>
+          <hr style="margin-top:0px">
+          <!-- text -->
+          </div>
+            <p class="text-justify">
+              Our key insight is to explicitly 
+              <b>decompose the inherently high-dimensional audio-guided portrait representation into three low-dimensional trainable feature grids:</b>
+            </p>
+          </div>
+          <!-- image -->
+          <div class="row justify-content-center" style="align-items:center; display:flex;">
+            <div> 
+              <img src="images/teaser.jpg" alt="teaser" class="img-responsive" width="100%"/>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- comparison results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Comparison Results</h3>
+            <hr style="margin-top:0px">
+            
+            <!-- self-driven -->
+            <h4>Test Set Self-driven</h4>
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/sd_obama_gt.mp4" type="video/mp4"> </video> </td>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/sd_obama_adnerf.mp4" type="video/mp4"> </video> </td>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/sd_obama_ours.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+                  <tr>
+                    <td width="33%"> <span> GT </span> </td>
+                    <td width="33%"> <span> AD-NeRF </span> </td>
+                    <td width="33%"> <span> Ours </span> </td>
+                  </tr>
+              </tbody>
+            </table>
+
+            <!-- cross driven -->
+            <h4>Cross-driven</h4>
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="25%"> <video width="95%" controls> <source src="videos/cd1_nvp_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="25%"> <video width="95%" controls> <source src="videos/cd1_lsp_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="25%"> <video width="95%" controls> <source src="videos/cd1_adnerf_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="25%"> <video width="95%" controls> <source src="videos/cd1_ours_8s.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+                  <tr>
+                    <td width="25%"> <span> NVP </span> </td>
+                    <td width="25%"> <span> LSP </span> </td>
+                    <td width="25%"> <span> AD-NeRF </span> </td>
+                    <td width="25%"> <span> Ours </span> </td>
+                  </tr>
+              </tbody>
+            </table>
+
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/cd1_marco_mit_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/cd1_marco_w2l_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/cd1_marco_ours_8s.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+                  <tr>
+                    <td width="33%"> <span> MakeItTalk </span> </td>
+                    <td width="33%"> <span> Wav2Lip </span> </td>
+                    <td width="33%"> <span> Ours </span> </td>
+                  </tr>
+              </tbody>
+            </table>
+
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/cd1_chris_mit_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/cd1_chris_w2l_8s.mp4" type="video/mp4"> </video> </td>
+                    <td width="33%"> <video width="95%" controls> <source src="videos/cd1_chris_ours_8s.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+                  <tr>
+                    <td width="33%"> <span> MakeItTalk </span> </td>
+                    <td width="33%"> <span> Wav2Lip </span> </td>
+                    <td width="33%"> <span> Ours </span> </td>
+                  </tr>
+              </tbody>
+            </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+  <!-- control results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Video Manipulation</h3>
+            <hr style="margin-top:0px">
+            <!-- text -->
+            </div>
+              <p class="text-justify">
+                Our method supports various video manipulation such as eye blinks, head poses, and backgrounds.
+              </p>
+            </div>
+            <!-- video -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <video class="d-block w-100" autoplay loop controls>
+                    <source src="videos/obama.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="carousel-item">
+                  <video class="d-block w-100" autoplay loop controls>
+                    <source src="videos/cnw.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>  
+
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <h3>Citation</h3>
+        <hr style="margin-top:0px">
+        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>TODO</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
+      <hr>
+      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
+  </footer>
+
+</body>
+</html>
