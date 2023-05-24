@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    NeRF2Mesh
+  </title>
+
+  <link rel="icon" href="../images/favicon.ico">
+
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- icon -->
+  <script src="https://kit.fontawesome.com/87dc3e863a.js" crossorigin="anonymous"></script>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background: rgb(255, 255, 255) no-repeat fixed top left;
+      font-family:'Open Sans', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0" style="padding-bottom: 0px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <!-- paper title -->
+            <h2 style="font-size:30px;">
+                Interactive Segment Anything NeRF with Feature Imitation
+            </h2>
+            
+            <!-- publication -->
+            <!-- <h4 style="color:#6e6e6e;"> ArXiv 2023 </h4> -->
+
+            <hr>
+            
+            <!-- authors -->
+            <h6> 
+                <a href="https://charlescxk.github.io/" target="_blank">Xiaokang Chen</a><sup>*1</sup>, 
+                <a href="https://me.kiui.moe/" target="_blank">Jiaxiang Tang</a><sup>*1</sup>, 
+                <a href="http://wangjingbo.top/" target="_blank">Jingbo Wang</a><sup>*2</sup>, 
+                Diwen Wan<sup>*1</sup>, 
+                <a href="http://www.cis.pku.edu.cn/info/1177/1378.htm" target="_blank">Gang Zeng</a><sup>1</sup>,
+                <br>
+            </h6>
+            <p> <sup>1</sup> Peking University &nbsp;
+                <sup>2</sup> Chinese University of Hong Kong &nbsp;
+                <br>
+            </p>
+            
+            <!-- links -->
+            <div class="row justify-content-center">
+              <!-- link to arxiv -->
+              <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="TODO" role="button" target="_blank">
+                <i class="fa fa-file-zipper"></i> 
+                Arxiv 
+                </a> </p>
+              </div>
+              <!-- link to video -->
+              <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://youtu.be/DnA7cPpwVFY" role="button" target="_blank">
+                <i class="fa-brands fa-youtube"></i> 
+                Video
+                </a> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+          <div class="row justify-content-center" style="align-items:center; display:flex;">
+            <div> 
+              <img src="images/teaser.jpg" alt="teaser" class="img-responsive" width="100%"/>
+            </div>
+          </div>
+          <br>
+        </div>
+          <p class="text-justify">
+            This paper investigates the potential of enhancing Neural Radiance Fields (NeRF) with semantics to expand their applications. Although NeRF has been proven useful in real-world applications like VR and digital creation, the lack of semantics hinders interaction with objects in complex scenes. We propose to imitate the backbone feature of off-the-shelf perception models to achieve zero-shot semantic segmentation with NeRF. Our framework reformulates the segmentation process by directly rendering semantic features and only applying the decoder from perception models. This eliminates the need for expensive backbones and benefits 3D consistency. Furthermore, we can project the learned semantics onto extracted mesh surfaces for real-time interaction. With the state-of-the-art Segment Anything Model (SAM), our framework accelerates segmentation by 16 times with comparable mask quality. The experimental results demonstrate the efficacy and computational advantages of our approach.
+          </p>
+        </div>
+        <div class="col-12 text-center">
+            <h3>Demo Video</h3>
+            <div class="row justify-content-center">
+                <iframe width="973" height="547" src="https://www.youtube.com/embed/DnA7cPpwVFY" title="Interactive Segment Anything NeRF with Feature Imitation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- comparison results -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Experiments</h3>
+            <hr style="margin-top:0px">
+            
+            <h4>Segmentation with different prompts</h4>
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="50%"> <video width="95%" controls> <source src="videos/click_garden.mp4" type="video/mp4"> </video> </td>
+                    <td width="50%"> <video width="95%" controls> <source src="videos/text_garden.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+                  <tr>
+                    <td width="50%"> <span> Click-based </span> </td>
+                    <td width="50%"> <span> Text-based </span> </td>
+                  </tr>
+              </tbody>
+            </table>
+
+            <h4>User interaction</h4>
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="50%"> <video width="95%" controls> <source src="videos/gui1.mp4" type="video/mp4"> </video> </td>
+                    <td width="50%"> <video width="95%" controls> <source src="videos/gui2.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+              </tbody>
+            </table>
+            <br>
+            
+            <h4>3D Mesh Segmentation</h4>
+            <div class="row justify-content-center" style="align-items:center; display:flex;">
+                <video width="95%" controls autoplay loop style="margin: 5px;"> <source src="videos/mesh1.mp4" type="video/mp4"> </video>
+            </div>
+            <br>
+            
+            <table style="table-layout: fixed;">
+              <tbody>
+                  <tr>
+                    <td width="50%"> <video width="95%" autoplay loop controls> <source src="videos/mesh3.mp4" type="video/mp4"> </video> </td>
+                    <td width="50%"> <video width="95%" autoplay loop controls> <source src="videos/mesh2.mp4" type="video/mp4"> </video> </td>
+                  </tr>
+              </tbody>
+            </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <h3>Citation</h3>
+        <hr style="margin-top:0px">
+        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>TODO</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
+    <hr>
+    Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
+  </footer>
+
+</body>
+</html>
