@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- mesh viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <title>
+    Volgen
+  </title>
+  <link rel="icon" href="icon.ico">
+</head>
+<body>
+  <section class="section">
+
+  <div class="container has-text-centered">
+    <!-- paper title -->
+    <p class="title is-3"> VolGen: Volumetric Latent Diffusion Models for 3D Object Generation </p>
+    
+    <!-- authors -->
+    <p class="title is-5 mt-2"> 
+      Authors Anonymized
+    </p>
+   
+  </div>
+
+  <!-- main container -->
+  <div class="container is-max-desktop has-text-centered">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-left">
+We propose to extend 2D latent diffusion models, well known from the Stable-Diffusion series, to volumetric latent diffusion models for 3D object generation.
+Specifically, we first train a Volumetric Variational Auto-Encoder (VVAE) to compress 3D occupancy grids into a latent space, which compresses the 512<sup>3</sup> occupancy grid into a 32<sup>3</sup>×8 latent code.
+We then train a diffusion model on this latent space, utilizing 3D convolutions and cross-attention layers for image conditioning. 
+This Volumetric Latent Diffusion Model (VLDM) generates accurate and smooth mesh surfaces from single-view image inputs, and generalizes well to unseen domains during inference in around 10 seconds. 
+Our key insight is that a simple volume-based latent diffusion model can scale up well for 3D generation tasks, without relying on sparse representations like point clouds or 3D specific techniques like triplane Neural Radiance Fields (NeRF).
+Extensive experiments demonstrate the effectiveness of our latent diffusion models in the 3D domain, indicating a promising direction for 3D generation tasks.
+    </p>
+
+    
+    <!-- results -->
+    
+    <p class="title is-3 mt-5 has-text-centered"> Qualitative Comparisons </p>
+    <p class="content is-size-6 has-text-left"> Drag with left mouse button to move the camera, right mouse button to move the object. </p>
+
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <img src="data/images/075.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <p class="content is-size-6 has-text-centered"> Input Image </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/volgen/075.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Volgen (Ours) </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/hunyuan/075.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Hunyuan3D-2 </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/instmesh/075.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> InstantMesh </p>
+      </div>
+    </div>
+
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <img src="data/images/1146.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <p class="content is-size-6 has-text-centered"> Input Image </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/volgen/1146.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Volgen (Ours) </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/hunyuan/1146.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Hunyuan3D-2 </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/instmesh/1146.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> InstantMesh </p>
+      </div>
+    </div>
+
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <img src="data/images/054.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <p class="content is-size-6 has-text-centered"> Input Image </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/volgen/054.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Volgen (Ours) </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/hunyuan/054.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Hunyuan3D-2 </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/instmesh/054.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> InstantMesh </p>
+      </div>
+    </div>
+
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <img src="data/images/068.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <p class="content is-size-6 has-text-centered"> Input Image </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/volgen/068.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Volgen (Ours) </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/hunyuan/068.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> Hunyuan3D-2 </p>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=data/instmesh/068.ply" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <p class="content is-size-6 has-text-centered"> InstantMesh </p>
+      </div>
+    </div>
+    
+    <p class="title is-5 mt-5 has-text-centered"> ↓ More Results ↓ </p>
+    <div class="columns is-multiline is-mobile">
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_1.html"> 1 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_2.html"> 2 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_3.html"> 3 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_4.html"> 4 </a> </div>
+    </div>
+    
+    
+  </div>
+
+
+  </section>
+</body>
+</html>
