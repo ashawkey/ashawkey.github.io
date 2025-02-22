@@ -36,7 +36,7 @@
     <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
     <p class="content is-size-6 has-text-left">
 We propose to extend 2D latent diffusion models, well known from the Stable-Diffusion series, to volumetric latent diffusion models for 3D object generation.
-Specifically, we first train a Volumetric Variational Auto-Encoder (VVAE) to compress 3D occupancy grids into a latent space, which compresses the 512<sup>3</sup> occupancy grid into a 32<sup>3</sup>×8 latent code.
+Specifically, we first train a Volumetric Variational Auto-Encoder (VVAE) to compress 3D occupancy grids into a latent space, which compresses the 512<sup>3</sup> occupancy grid into a 32<sup>3</sup> latent code.
 We then train a diffusion model on this latent space, utilizing 3D convolutions and cross-attention layers for image conditioning. 
 This Volumetric Latent Diffusion Model (VLDM) generates accurate and smooth mesh surfaces from single-view image inputs, and generalizes well to unseen domains during inference in around 10 seconds. 
 Our key insight is that a simple volume-based latent diffusion model can scale up well for 3D generation tasks, without relying on sparse representations like point clouds or 3D specific techniques like triplane Neural Radiance Fields (NeRF).
